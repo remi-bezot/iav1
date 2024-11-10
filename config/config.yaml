@@ -1,0 +1,10 @@
+training_params:
+  epochs: 100
+  batch_size: 32
+
+models:
+  gan_model:
+    layers: [128, 256, 512]
+  dqn_agent:
+    gamma: 0.95
+    epsilon_decay: 0.995

@@ -1,0 +1,69 @@
+import tkinter as tk
+from tkinter import messagebox
+import random
+
+class Team:
+    def __init__(self, name):
+        self.name = name
+        self.performance = 0
+        self.rewards = 0
+
+    def update_performance(self, points):
+        self.performance += points
+        if self.performance >= 100:
+            self.reward_team()
+
+    def reward_team(self):
+        reward = random.randint(50, 100)  # Bonification aléatoire
+        self.rewards += reward
+        return reward
+
+class PatronInterface:
+    def __init__(self, master):
+        self.master = master
+        self.master.title("Patron - Interface de Gestion des Équipes")
+        
+        self.teams = [Team("Team A"), Team("Team B"), Team("Team C")]
+        
+        self.create_widgets()
+    
+    def create_widgets(self):
+        self.team_labels = []
+        self.performance_labels = []
+        self.reward_labels = []
+        
+        for i, team in enumerate(self.teams):
+            team_label = tk.Label(self.master, text=f"{team.name}")
+            team_label.grid(row=i, column=0)
+            self.team_labels.append(team_label)
+            
+            performance_label = tk.Label(self.master, text=f"Performance: {team.performance}")
+            performance_label.grid(row=i, column=1)
+            self.performance_labels.append(performance_label)
+            
+            reward_label = tk.Label(self.master, text=f"Récompenses: {team.rewards}")
+            reward_label.grid(row=i, column=2)
+            self.reward_labels.append(reward_label)
+        
+        self.order_button = tk.Button(self.master, text="Donner un ordre", command=self.give_order)
+        self.order_button.grid(row=len(self.teams), column=0, columnspan=3)
+        
+    def give_order(self):
+        team = random.choice(self.teams)
+        points = random.randint(10, 30)
+        team.update_performance(points)
+        
+        messagebox.showinfo("Ordre donné", f"L'ordre a été donné à {team.name} et a reçu {points} points de performance.")
+        
+        # Mettre à jour l'affichage
+        self.update_labels()
+    
+    def update_labels(self):
+        for i, team in enumerate(self.teams):
+            self.performance_labels[i].config(text=f"Performance: {team.performance}")
+            self.reward_labels[i].config(text=f"Récompenses: {team.rewards}")
+        
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = PatronInterface(root)
+    root.mainloop()

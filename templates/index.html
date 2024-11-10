@@ -1,0 +1,275 @@
+<!-- <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat avec l'IA</title>
+</head>
+<body>
+    <div id="chat-container">
+        <textarea id="chat-box" rows="10" cols="50" disabled></textarea><br>
+        <input type="text" id="command-input" placeholder="Entrez une commande...">
+        <button id="send-button">Envoyer</button>
+    </div>
+
+    <script>
+        document.getElementById("send-button").addEventListener("click", function() {
+            var command = document.getElementById("command-input").value;
+            if (command.trim() !== "") {
+                fetch('/execute-command', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ command: command })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Réponse:', data);
+                    document.getElementById('chat-box').value += 'Vous: ' + command + '\n';
+                    document.getElementById('chat-box').value += 'IA: ' + data.response + '\n';
+                    document.getElementById('chat-box').value += 'IA: Les IA sont en cours de démarrage...\n';
+                })
+                .catch(error => console.error('Erreur:', error));
+            } else {
+                alert('Veuillez entrer une commande.');
+            }
+        });
+    </script>
+</body>
+</html> -->
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat avec l'IA</title>
+</head>
+<body>
+    <div id="chat-container">
+        <h1>Chat avec l'IA</h1>
+        <textarea id="chat-box" rows="10" cols="50" disabled></textarea><br>
+        <input type="text" id="command-input" placeholder="Entrez une commande...">
+        <button id="send-button">Envoyer</button>
+    </div>
+
+    <h3>Teams Data:</h3>
+    <ul id="teams-data">
+        {% for team in teams_data %}
+            <li>{{ team.team_name }} - Membres: {{ team.members }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Languages Data:</h3>
+    <ul id="languages-data">
+        {% for lang in languages_data %}
+            <li>{{ lang.code }} - {{ lang.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Export Links:</h3>
+    <ul>
+        <li><a href="{{ url_for('export_languages_route') }}">Exporter les langues</a></li>
+        <li><a href="{{ url_for('export_statistics_route') }}">Exporter les statistiques</a></li>
+    </ul>
+
+    <script>
+        document.getElementById("send-button").addEventListener("click", function() {
+            var command = document.getElementById("command-input").value;
+            if (command.trim() !== "") {
+                fetch('/execute-command', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ command: command })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Réponse:', data);
+                    document.getElementById('chat-box').value += 'Vous: ' + command + '\n';
+                    document.getElementById('chat-box').value += 'IA: ' + data.response + '\n';
+                    document.getElementById('chat-box').value += 'IA: Les IA sont en cours de démarrage...\n';
+                })
+                .catch(error => console.error('Erreur:', error));
+            } else {
+                alert('Veuillez entrer une commande.');
+            }
+        });
+    </script>
+</body>
+</html> -->
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat avec l'IA</title>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+</head>
+<body>
+    <div id="chat-container">
+        <h1>Chat avec l'IA</h1>
+        <textarea id="chat-box" rows="10" cols="50" disabled></textarea><br>
+        <input type="text" id="command-input" placeholder="Entrez une commande...">
+        <button id="send-button">Envoyer</button>
+    </div>
+
+    <h3>Teams Data:</h3>
+    <ul id="teams-data">
+        {% for team in teams_data %}
+            <li>{{ team.team_name }} - Membres: {{ team.members }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Languages Data:</h3>
+    <ul id="languages-data">
+        {% for lang in languages_data %}
+            <li>{{ lang.code }} - {{ lang.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Export Links:</h3>
+    <ul>
+        <li><a href="{{ url_for('export_languages_route') }}">Exporter les langues</a></li>
+        <li><a href="{{ url_for('export_statistics_route') }}">Exporter les statistiques</a></li>
+    </ul>
+
+    <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+socket.on('message', function(data) {
+    console.log('Réponse:', data);
+    document.getElementById('chat-box').value += 'IA: ' + data.data + '\n';
+});
+        document.getElementById("send-button").addEventListener("click", function() {
+            var command = document.getElementById("command-input").value;
+            if (command.trim() !== "") {
+                fetch('/execute-command', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ command: command })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Réponse:', data);
+                    document.getElementById('chat-box').value += 'Vous: ' + command + '\n';
+                    document.getElementById('chat-box').value += 'IA: ' + data.response + '\n';
+                })
+                .catch(error => console.error('Erreur:', error));
+            } else {
+                alert('Veuillez entrer une commande.');
+            }
+        });
+    </script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat avec l'IA</title>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+</head>
+<body>
+    <div id="chat-container">
+        <h1>Chat avec l'IA</h1>
+        <textarea id="chat-box" rows="10" cols="50" disabled></textarea><br>
+        <input type="text" id="command-input" placeholder="Entrez une commande...">
+        <button id="send-button">Envoyer</button>
+    </div>
+
+    <h3>Teams Data:</h3>
+    <ul id="teams-data">
+        {% for team in teams_data %}
+            <li>{{ team.team_name }} - Membres: {{ team.members }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Languages Data:</h3>
+    <ul id="languages-data">
+        {% for lang in languages_data %}
+            <li>{{ lang.code }} - {{ lang.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Export Options:</h3>
+    <div id="export-section">
+        <button id="export-teams">Exporter les équipes</button>
+        <button id="export-languages">Exporter les langues</button>
+    </div>
+
+    <h3>Données Exportées:</h3>
+    <pre id="exported-data" class="data-view"></pre>
+
+    <h3>Liens d'exportation:</h3>
+    <ul>
+        <li><a href="{{ url_for('export_languages_route') }}">Exporter les langues</a></li>
+        <li><a href="{{ url_for('export_statistics_route') }}">Exporter les statistiques</a></li>
+    </ul>
+
+    <script>
+        // Socket pour le chat avec l'IA
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+        socket.on('message', function(data) {
+            console.log('Réponse:', data);
+            document.getElementById('chat-box').value += 'IA: ' + data.data + '\n';
+        });
+
+        document.getElementById("send-button").addEventListener("click", function() {
+            var command = document.getElementById("command-input").value;
+            if (command.trim() !== "") {
+                fetch('/execute-command', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ command: command })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Réponse:', data);
+                    document.getElementById('chat-box').value += 'Vous: ' + command + '\n';
+                    document.getElementById('chat-box').value += 'IA: ' + data.response + '\n';
+                })
+                .catch(error => console.error('Erreur:', error));
+            } else {
+                alert('Veuillez entrer une commande.');
+            }
+        });
+
+        // Exportation et visualisation des données
+        document.getElementById("export-teams").addEventListener("click", function() {
+            fetch("/export/teams")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("exported-data").textContent = data;
+                })
+                .catch(error => console.error("Erreur lors de l'export des équipes:", error));
+        });
+
+        document.getElementById("export-languages").addEventListener("click", function() {
+            fetch("/export/languages")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("exported-data").textContent = data;
+                })
+                .catch(error => console.error("Erreur lors de l'export des langues:", error));
+        });
+    </script>
+</body>
+</html>

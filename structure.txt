@@ -1,0 +1,35 @@
+crypto-communication-ai-project/
+│
+├── assets/                         # Ressources de l'application (images, icônes, etc.)
+│   └── logo.png
+│
+├── data/                           # Données utilisées pour l'entraînement des modèles
+│   ├── training_data/              # Données d'entraînement pour les IA
+│   └── evaluation_data/            # Données pour l'évaluation des performances
+│
+├── models/                         # Modèles d'IA (GAN, DQN, GPT-2, etc.)
+│   ├── __init__.py
+│   ├── gan_model.py                # Modèle GAN pour la communication sécurisée
+│   ├── dqn_agent.py                # Agent DQN pour l'apprentissage par renforcement
+│   └── gpt2_manual_generator.py    # GPT-2 pour la génération de manuels
+│
+├── simulation/                     # Scripts pour exécuter la simulation de communication
+│   ├── __init__.py
+│   ├── training_simulation.py      # Simulation d'entraînement des IA
+│   └── reward_calculation.py       # Calcul des récompenses et mise à jour des modèles
+│
+├── interface/                      # Code de l'interface utilisateur avec Tkinter
+│   ├── __init__.py
+│   ├── ui_main.py                  # Interface principale avec les boutons et l'affichage
+│   └── ui_elements.py              # Éléments de l'UI (boutons, labels, etc.)
+│
+├── utils/                          # Utilitaires généraux (gestion des clés, etc.)
+│   ├── key_generator.py            # Génération des clés pour la cryptographie
+│   └── logger.py                   # Gestion des logs pour les entraînements et les actions
+│
+├── config/                         # Fichiers de configuration
+│   └── config.yaml                 # Paramètres de configuration du projet
+│
+├── main.py                         # Point d'entrée principal de l'application
+├── requirements.txt                # Liste des dépendances du projet
+└── README.md                       # Documentation du projet
