@@ -1,22 +1,28 @@
 import tkinter as tk
+import threading
 from interface.ui_main import App
 from simulation.training_simulation import train_models
-from models.gan_model import GanModel
+from flask_socketio import SocketIO
+from app import app  # Importer l'application Flask définie
 
+# Lancer l'entraînement (simulations)
 def start_training():
     train_models()
 
-def stop_training():
-    # Arrêter l'entraînement et afficher les résultats
-    pass
+# Démarrer Flask dans un thread séparé
+def run_flask():
+    socketio = SocketIO(app)
+    socketio.run(app, debug=True, use_reloader=False)  # Démarre Flask sans recharger
 
+# Code principal
 if __name__ == "__main__":
-    # Crée l'interface
+    # Crée l'interface Tkinter
     root = tk.Tk()
-    app = App(root)
+    app_gui = App(root)
 
-    # Lancer les simulations et l'entraînement au démarrage
-    start_training()
+    # Démarrer Flask dans un thread séparé
+    flask_thread = threading.Thread(target=run_flask)
+    flask_thread.start()
 
-    # Lancer l'interface graphique
+    # Lancer l'interface graphique Tkinter
     root.mainloop()
